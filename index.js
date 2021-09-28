@@ -18,9 +18,9 @@ function delay(t, v) {
 
 async function example() {
     let driver = await new Builder().forBrowser("chrome").build();
-    await driver.get("https://luxurehogar.com/wp-admin")
-    await driver.findElement(By.name('log')).sendKeys('admin');
-    await driver.findElement(By.name('pwd')).sendKeys('aurateam@mixael', Key.ENTER);
+    await driver.get("url")
+    await driver.findElement(By.name('log')).sendKeys('user');
+    await driver.findElement(By.name('pwd')).sendKeys('password', Key.ENTER);
 
 await driver.get("https://luxurehogar.com/wp-admin/theme-editor.php");
       await driver.findElement(By.css('.ace_content')).then((thisa) => {
