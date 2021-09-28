@@ -22,7 +22,7 @@ async function example() {
     await driver.findElement(By.name('log')).sendKeys('user');
     await driver.findElement(By.name('pwd')).sendKeys('password', Key.ENTER);
 
-await driver.get("https://luxurehogar.com/wp-admin/theme-editor.php");
+await driver.get("url");
       await driver.findElement(By.css('.ace_content')).then((thisa) => {
       return delay(9000).then(function(){
       return thisa.click()
@@ -33,7 +33,21 @@ await driver.get("https://luxurehogar.com/wp-admin/theme-editor.php");
     
       const all_css = clipboardy.readSync();
       fs.writeFile("stylesheet.css", all_css, (err)=>{console.log(err)});
-      await driver.close();
-}
+
+    await driver.get("url")
+      await driver.findElement(By.css('.ace_print_margin_layer')).then((thisa) => {
+        return delay(9000).then(function(){
+        return thisa.click()
+         }) 
+     }).catch(err=>{console.log(err)});
+        await driver.actions().keyDown(Key.CONTROL).sendKeys('a').perform();
+        await driver.actions().keyDown(Key.CONTROL).sendKeys('c').perform();
+      
+         const all_js = clipboardy.readSync();
+         fs.writeFile("scripts.js", all_js, (err)=>{console.log(err)});
+         //driver.manage().getTimeouts().setScriptTimeout(5, TimeUnit.SECONDS);
+         await driver.close();
+    }
 
 example();  
+
